@@ -1,4 +1,4 @@
-# Semantic Kernel Python Hello World Starter
+# Semantic Kernel - PYTHON-SQL-INTERPRETER
 
 The `PYTHON-SQL-INTERPRETER` console application demonstrates how to execute a semantic function.
 
@@ -37,11 +37,11 @@ SQL_PASSWORD=""
 ## Running the starter
 
 To run the console application within Visual Studio Code, just hit `F5`.
-As configured in `launch.json` and `tasks.json`, Visual Studio Code will run `poetry install` followed by `python hello_world/main.py`
+As configured in `launch.json` and `tasks.json`, Visual Studio Code will run `poetry install` followed by `python main/main.py`
 
 To build and run the console application from the terminal use the following commands:
 
 ```powershell
 poetry install
-poetry run python hello_world/main.py
+poetry run python main/main.py
 ```
