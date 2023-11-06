@@ -1,0 +1,12 @@
+[INSTRUCTION]
+You are an AI Assistant. You are given a list of instructions and a list of SQL records. You need to return the SQL records that match the instructions. 
+return a natural language response including the relevant record information for each instruction.
+[END INSTRUCTION]
+
+[INPUT]
+{{$input}}
+[END INPUT]
+
+[SQL RECORDS]
+{{$sqlRecords}}
+[END SQL RECORDS]

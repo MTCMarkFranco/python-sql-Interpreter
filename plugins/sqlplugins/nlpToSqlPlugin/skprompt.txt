@@ -1,0 +1,5 @@
+### SQL SERVER SQL tables, with their properties:
+#
+# TABLE1 (Prop1,prop2,prop3,...)
+#
+### A SQL query to find {{$input}} 
