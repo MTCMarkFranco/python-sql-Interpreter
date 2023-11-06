@@ -27,41 +27,25 @@ def main():
         skills_directory, "sqlplugins"
     )
 
-    # 1. First Call the NLP to SQL Plugin to get the SQL Query
-    NLPToSqlPlugin_function = sqlPLugins_Plugins["nlpToSqlPlugin"]
+    # Create a sequential planner
+    planner = SequentialPlanner(kernel)
 
-    # The "input" variable in the prompt is set by "content" in the ContextVariables object.
-    context_variables = ContextVariables(
-        content=originalPrompt, variables={""}
-    )
-    
-    sqlQuery = NLPToSqlPlugin_function(variables=context_variables)
+    # Define the steps for the planner
+    steps = [
+        ("nlpToSqlPlugin", {"content": originalPrompt}),
+        ("get_sql_query_result", {"content": "output"}),
+        ("ReturnNLPresponsewithRecords", {"content": originalPrompt, "variables": {"sqlRecords": "output"}})
+    ]
 
-    print(TQLQuery)
+    # Generate the plan
+    plan = planner.generate_plan(steps)
 
-    # 2. Next Call the SQL Get records PLugin to get records from the database
+    # Execute the plan
+    result = planner.execute_plan(plan)
 
-    # Add the SQL Query to the context variables
-    context_variables["content"] = sqlQuery
-        
-    sqlQueryPlugin_function = sqlPLugins_Plugins["get_sql_query_result"]
+    print("Returned Records in NL" + result)
 
-    # invoke the sqlQueryPlugin_function passing in the context variables
-    context_variables = sqlQueryPlugin_function(variables=context_variables)
 
-    returnedSqlRecords = context_variables["records"]
-
-    # 3. call the semantic kernel chat completion service to return the answer to the user including the RecordsReturned
-    NLPresponsewithRecords_function = sqlPLugins_Plugins["ReturnNLPresponsewithRecords"]
-    # The "input" variable in the prompt is set by "content" in the ContextVariables object.
-    context_variables = ContextVariables(
-        content=originalPrompt, variables={"sqlRecords: " returnedSqlRecords}
-    )
-    
-    returnedNLPResponse = NLPresponsewithRecords_function(variables=context_variables)
-    print("Returned Records in NL" + returnedNLPResponse)
-
-    )
 
 
 if __name__ == "__main__":
