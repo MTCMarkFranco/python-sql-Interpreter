@@ -1,6 +1,6 @@
 # Semantic Kernel Python Hello World Starter
 
-The `sk-python-hello-world` console application demonstrates how to execute a semantic function.
+The `PYTHON-SQL-INTERPRETER` console application demonstrates how to execute a semantic function.
 
 ## Prerequisites
 
@@ -19,11 +19,19 @@ Make sure you have an
 Copy the `.env.example` file to a new file named `.env`. Then, copy those keys into the `.env` file:
 
 ```
+# OPEN AI Settings
 OPENAI_API_KEY=""
 OPENAI_ORG_ID=""
 AZURE_OPENAI_DEPLOYMENT_NAME=""
 AZURE_OPENAI_ENDPOINT=""
 AZURE_OPENAI_API_KEY=""
+
+# SQL DB Settings
+SERVER_NAME=
+DATABASE_NAME=""
+SQLADMIN_USER=""
+SQL_PASSWORD=""
+
 ```
 
 ## Running the starter
