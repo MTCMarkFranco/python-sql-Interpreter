@@ -3,7 +3,8 @@ import os
 import semantic_kernel as sk
 from semantic_kernel.connectors.ai.open_ai import (
     AzureTextCompletion,
-    OpenAITextCompletion,
+    AzureChatCompletion,
+    
 )
 from semantic_kernel.orchestration.context_variables import ContextVariables
 from semantic_kernel.planning.sequential_planner import SequentialPlanner
@@ -21,8 +22,10 @@ async def main():
     # Configure AI service used by the kernel. Load settings from the .env file.
     deployment, api_key, endpoint = sk.azure_openai_settings_from_dot_env()
     kernel.add_chat_service(
-    "GPT35", AzureTextCompletion(deployment, endpoint, api_key))    
+    "GPT35", AzureChatCompletion(deployment, endpoint, api_key))    
+
     skills_directory = "plugins"
+    
     
     sqlPLugins_SEM_Plugins = kernel.import_semantic_skill_from_directory(
         skills_directory, "sqlplugins"
@@ -45,8 +48,8 @@ async def main():
     ctxvariables = ContextVariables()
     ctxvariables.set("input", originalPrompt)
 
-    result = await kernel.run_async(sqlPLugins_SEM_Plugins["nlpToSqlPlugin"],input_vars=ctxvariables)
-    print(result)
+    #result = await kernel.run_async(sqlPLugins_SEM_Plugins["nlpToSqlPlugin"],input_vars=ctxvariables)
+    #print(result)
 
     # Generate the plan
     ask ="Take in the prompt and do the following things in sequence: " \

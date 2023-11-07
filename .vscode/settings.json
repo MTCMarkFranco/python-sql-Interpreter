@@ -9,5 +9,20 @@
     "python.formatting.provider": "black",
     "python.formatting.autopep8Args": [
         "--max-line-length=160"
+    ],
+    "sqltools.connections": [
+        {
+            "mssqlOptions": {
+                "appName": "SQLTools",
+                "useUTC": true,
+                "encrypt": true
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "driver": "MSSQL",
+            "name": "AI_DB",
+            "group": "AI_DB",
+            "connectString": "Driver={ODBC Driver 18 for SQL Server};Server=tcp:ai-db-server-614.database.windows.net,1433;Database=ai-db;Uid=marfra;Pwd=M@pleCustom821251414;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;"
+        }
     ]
 }
