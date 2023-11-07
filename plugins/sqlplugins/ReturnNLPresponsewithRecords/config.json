@@ -1,7 +1,7 @@
 {
     "schema": 1,
     "type": "completion",
-    "description": "Returns a response to the initial questions reasoning over the sql records returned",
+    "description": "Returns natural language response to the prompt, reasoning over the sql records returned from the SQL Database.",
     "completion": {
         "max_tokens": 256,
         "temperature": 0,
@@ -13,12 +13,12 @@
         "parameters": [
             {
                 "name": "input",
-                "description": "Input for this semantic function.",
+                "description": "Original prompt or question.",
                 "defaultValue": ""
             },
             {
                 "name": "sqlRecords",
-                "description": "SQL Records to reason over",
+                "description": "SQL records returned from the SQL Database.",
                 "defaultValue": ""
             }
         ]
