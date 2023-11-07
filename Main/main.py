@@ -20,9 +20,8 @@ async def main():
 
     # Configure AI service used by the kernel. Load settings from the .env file.
     deployment, api_key, endpoint = sk.azure_openai_settings_from_dot_env()
-    kernel.add_text_completion_service(
-    "GPT35", AzureTextCompletion(deployment, endpoint, api_key))
-    
+    kernel.add_chat_service(
+    "GPT35", AzureTextCompletion(deployment, endpoint, api_key))    
     skills_directory = "plugins"
     
     sqlPLugins_SEM_Plugins = kernel.import_semantic_skill_from_directory(
@@ -43,7 +42,10 @@ async def main():
     #     (sqlPLugins_SEM_Plugins["ReturnNLPresponsewithRecords"], {"content": originalPrompt})
     # ]
     
-    result = await kernel.run_async(sqlPLugins_SEM_Plugins["nlpToSqlPlugin"],input_str=originalPrompt)
+    ctxvariables = ContextVariables()
+    ctxvariables.set("input", originalPrompt)
+
+    result = await kernel.run_async(sqlPLugins_SEM_Plugins["nlpToSqlPlugin"],input_vars=ctxvariables)
     print(result)
 
     # Generate the plan

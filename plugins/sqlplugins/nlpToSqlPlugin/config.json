@@ -16,7 +16,7 @@
     "parameters": [
       {
         "name": "input",
-        "description": "Natural Language Prompt",
+        "description": "The question being asked",
         "defaultValue": ""
       }
     ]
