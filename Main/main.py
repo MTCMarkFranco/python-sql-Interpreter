@@ -44,7 +44,7 @@ async def main():
     # ]
     
     result = await kernel.run_async(sqlPLugins_SEM_Plugins["nlpToSqlPlugin"],input_str=originalPrompt)
-    print(result.result.value)
+    print(result)
 
     # Generate the plan
     ask ="Take in the prompt and do the following things in sequence: " \
