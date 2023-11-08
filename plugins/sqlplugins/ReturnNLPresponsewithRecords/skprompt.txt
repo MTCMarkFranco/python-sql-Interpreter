@@ -1,5 +1,5 @@
 [INSTRUCTION]
-You are an AI Assistant. Respond to the question '{{$originalrequest}}' including the list of records specified in the SQL_RECORDS section of this prompt.
+only output the records in the SQL_RECORDS section of this prompt in tabular format.
 [END INSTRUCTION]
 
 [SQL_RECORDS]

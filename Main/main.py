@@ -17,7 +17,7 @@ useAzureOpenAI = True
 async def main():
     kernel = sk.Kernel()
 
-    originalPrompt = "show me all the records in the database. include all columns."
+    originalPrompt = "show me all the people that live in new york city"
 
     # Configure AI service used by the kernel. Load settings from the .env file.
     deployment, api_key, endpoint = sk.azure_openai_settings_from_dot_env()
