@@ -6,6 +6,7 @@ The `PYTHON-SQL-INTERPRETER` console application demonstrates how to execute a s
 
 - [Python](https://www.python.org/downloads/) 3.8 and above
 - [Semantic Kernel Tools](https://marketplace.visualstudio.com/items?itemName=ms-semantic-kernel.semantic-kernel)
+- [Semantic Kernel SDK(0.3.14.dev0 - *VERSION TESTED*)](https://pypi.org/project/semantic-kernel/0.3.14.dev0/)
 
 ## Configuring the solution
 
