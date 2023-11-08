@@ -35,8 +35,13 @@ SQL_PASSWORD=""
 
 ## solution design and sample execution
 
+Main Code flow:
+![Main Code](images/main-code-block.png)
+
+Sample Database Schema:
 ![DB Schema](images/db-schema-sample.png)
 
+Sample Output:
 ![Code Run](images/code-run-sample.png)
 
 ## Running the solution
