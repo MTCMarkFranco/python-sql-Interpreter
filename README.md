@@ -34,9 +34,9 @@ SQL_PASSWORD=""
 
 ## solution design and sample execution
 
-![DB Schema]("./../images/db-schema-sample.png")
+![DB Schema]("images/db-schema-sample.png")
 
-![Code Run]("./../images/code-run-sample.png")
+![Code Run]("images/code-run-sample.png")
 
 ## Running the solution
 
