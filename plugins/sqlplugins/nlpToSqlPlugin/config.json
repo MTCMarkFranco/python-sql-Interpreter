@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "description": "Natural Language to T-SQL",
+  "description": "Translate the ask into a T-SQL statement using the database schema in the prompt.",
   "type": "completion",
   "completion": {
     "max_tokens": 800,

@@ -7,12 +7,16 @@ from semantic_kernel.skill_definition import (
 from semantic_kernel.orchestration.sk_context import SKContext
 
 class SQLQueryPlugin:
+    
     @sk_function(
         description="Get Result of SQL Query",
         name="sqlQueryPlugin",
         input_description="The SQL Query to be executed"
     )
-   
+    @sk_function_context_parameter(
+        name="output",
+        description="The result of the SQL Query",
+    )
     def get_sql_result(self, context: SKContext) -> str:        
         
         query = context["input"]
@@ -20,7 +24,7 @@ class SQLQueryPlugin:
         database_name = os.getenv("DATABASE_NAME")
         username = os.environ.get("SQLADMIN_USER")
         password = os.getenv("SQL_PASSWORD")
-        conn = pyodbc.connect('DRIVER={driver};SERVER={server_name};DATABASE={database_name};UID={username};PWD={password}'.format(driver="ODBC Driver 18 for SQL Server",server_name=server_name, database_name=database_name, username=username, password=password))
+        conn = pyodbc.connect('DRIVER={driver};SERVER={server_name};DATABASE={database_name};UID={username};PWD={password}'.format(driver="ODBC Driver 17 for SQL Server",server_name=server_name, database_name=database_name, username=username, password=password))
         cursor = conn.cursor()
         try:
             cursor.execute(query)
@@ -31,4 +35,8 @@ class SQLQueryPlugin:
             cursor.close()
             conn.close()
         
+        print("TSQL:" + str(query))
+        print("originalrequest:" + str(context["originalrequest"]))
+        
+        print("Records:" + str(result))
         return str(result)

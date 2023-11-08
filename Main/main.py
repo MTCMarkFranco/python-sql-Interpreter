@@ -17,7 +17,7 @@ useAzureOpenAI = True
 async def main():
     kernel = sk.Kernel()
 
-    originalPrompt = "How many people in the database named mike?"
+    originalPrompt = "show me all the records in the database. include all columns."
 
     # Configure AI service used by the kernel. Load settings from the .env file.
     deployment, api_key, endpoint = sk.azure_openai_settings_from_dot_env()
@@ -25,8 +25,7 @@ async def main():
     "GPT35", AzureChatCompletion(deployment, endpoint, api_key))    
 
     skills_directory = "plugins"
-    
-    
+        
     sqlPLugins_SEM_Plugins = kernel.import_semantic_skill_from_directory(
         skills_directory, "sqlplugins"
     )
@@ -35,38 +34,24 @@ async def main():
         skills_directory + "\\sqlplugins\\","sqlQueryPlugin"
     )
 
-    # Create a sequential planner
+    # 1. Create a sequential planner
     planner = SequentialPlanner(kernel)
 
-    # Define the steps for the planner
-    # steps = [
-    #     (sqlPLugins_SEM_Plugins["nlpToSqlPlugin"], {"content": originalPrompt}),
-    #     (sqlPLugins_NAT_Plugins["sqlQueryPlugin"], {"content": "output"}),
-    #     (sqlPLugins_SEM_Plugins["ReturnNLPresponsewithRecords"], {"content": originalPrompt})
-    # ]
-    
-    ctxvariables = ContextVariables()
-    ctxvariables.set("input", originalPrompt)
-
-    #result = await kernel.run_async(sqlPLugins_SEM_Plugins["nlpToSqlPlugin"],input_vars=ctxvariables)
-    #print(result)
-
-    # Generate the plan
-    ask ="Take in the prompt and do the following things in sequence: " \
-        "1. Convert the prompt to a SQL query, and pass the output to the next steps as input. " \
-        "2. Execute the SQL query " \
-        "3. Return the result of the SQL query to the user"
-    
+    # 2. Generate the plan
+    ask ="Execute the following things in sequence: " \
+        "1. Convert the prompt to a SQL query." \
+        "2. Execute the SQL query." \
+        "3. Return the records in a natural language response."
     sequential_plan = await planner.create_plan_async(goal=ask)
+
+    # 3. Execute the plan    
+    context = kernel.create_new_context(variables=ContextVariables(variables={"originalrequest": originalPrompt}));
+    results = await sequential_plan.invoke_async(originalPrompt,context)
     
-    results = await sequential_plan.invoke_async()
-
     # for step in sequential_plan._steps:
-    #     print(step.description, ":", step._state.__dict__)
+    #    print(step.description, ":", step._state.__dict__)
 
-    #print("Returned Records in NL" + results)
-
-
+    print("AI Response: " + results.result)
 
 
 if __name__ == "__main__":

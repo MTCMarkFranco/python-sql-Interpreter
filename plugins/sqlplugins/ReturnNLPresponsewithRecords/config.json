@@ -13,11 +13,6 @@
         "parameters": [
             {
                 "name": "input",
-                "description": "Original prompt or question.",
-                "defaultValue": ""
-            },
-            {
-                "name": "sqlRecords",
                 "description": "SQL records returned from the SQL Database.",
                 "defaultValue": ""
             }
