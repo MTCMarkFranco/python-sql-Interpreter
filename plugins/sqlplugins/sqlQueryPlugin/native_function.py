@@ -1,3 +1,4 @@
+from asyncio import exceptions
 import os
 import pyodbc
 from semantic_kernel.skill_definition import (
@@ -28,9 +29,9 @@ class SQLQueryPlugin:
         cursor = conn.cursor()
         try:
             cursor.execute(query)
-            result = cursor.fetchone()
-        except:
-            pass
+            result = cursor.fetchall()
+        except Exception as e:
+            print(f"An error occurred: {e}")
         finally:    
             cursor.close()
             conn.close()

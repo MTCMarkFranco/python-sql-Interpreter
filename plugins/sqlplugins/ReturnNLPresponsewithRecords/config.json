@@ -15,6 +15,11 @@
                 "name": "input",
                 "description": "SQL records returned from the SQL Database.",
                 "defaultValue": ""
+            },
+            {
+                "name": "originalrequest",
+                "description": "The prompt to be completed.",
+                "defaultValue": ""
             }
         ]
     },

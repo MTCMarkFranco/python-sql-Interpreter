@@ -1,16 +1,9 @@
-[INSTRUCTION]
-You are an AI Assistant for a Data Scientist.
-You will generate a T-SQL Statement to answer the question.
-You will use the Table structure in the SQL_DATABASE section below to formulate your T-SQL Statement.
-Try to corelate the question with the table structure and generate a T-SQL Statement to answer the question.
-Try to map columns to metadata of the question.
-Only use the data in this prompt to formulate your T-SQL Statement.
-Only return a T-SQL Statement and nothing else.
-DO NOT provide Examples, or references.
-Just transalate the question: "{{$input}}" into MS sql server compliant SQL Syntax.
-[INSTRUCTION]
-
 [SQL_TABLE]
 Person (FirstName, LastName, DateOfBirth, Email,PhoneNumber. City)
 [SQL_TABLE]
 
+[INSTRUCTIONS]
+Write a SQL Script to answer the following the prompt
+use the SQL_TABLE to generate the necessary scql script syntax
+[END INSTRUCTIONS]
+{{$originalrequest}}

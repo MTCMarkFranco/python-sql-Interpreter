@@ -1,6 +1,13 @@
 [INSTRUCTION]
-only output the records in the SQL_RECORDS section of this prompt in tabular format.
-[END INSTRUCTION]
+    output the Original Request as a comment in the SQL_RECORDS section of this prompt.
+    strip out bracket characters and output the value as "Response"
+    if Records in SQL_RECORDS section is an array then output the array in tabular format and use table schema for headings in first row.
+[INSTRUCTION]
+
+[Original Request]
+{{$originalrequest}}
+[Original Request]
+
 
 [SQL_RECORDS]
 {{$input}}

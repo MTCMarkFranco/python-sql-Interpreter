@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "description": "Translate the ask into a T-SQL statement using the database schema in the prompt.",
+  "description": "Convert the prompt into a SQL statement",
   "type": "completion",
   "completion": {
     "max_tokens": 800,
@@ -15,8 +15,8 @@
   "input": {
     "parameters": [
       {
-        "name": "input",
-        "description": "The question being asked",
+        "name": "originalrequest",
+        "description": "The prompt to be completed.",
         "defaultValue": ""
       }
     ]
