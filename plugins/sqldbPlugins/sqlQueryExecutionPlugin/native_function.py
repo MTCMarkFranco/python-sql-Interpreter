@@ -1,17 +1,19 @@
-from asyncio import exceptions
 import os
+from asyncio import exceptions
 import pyodbc
 from semantic_kernel.skill_definition import (
         sk_function,
         sk_function_context_parameter
 )
-from semantic_kernel.orchestration.sk_context import SKContext
+from semantic_kernel.orchestration.sk_context import (
+        SKContext
+)
 
-class SQLQueryPlugin:
+class sqlQueryExecutionPlugin:
     
     @sk_function(
         description="Get Result of SQL Query",
-        name="sqlQueryPlugin",
+        name="sqlQueryExecutionPlugin",
         input_description="The SQL Query to be executed"
     )
     @sk_function_context_parameter(
@@ -21,6 +23,8 @@ class SQLQueryPlugin:
     def get_sql_result(self, context: SKContext) -> str:        
         
         query = context["input"]
+        result = "No Records Found"
+
         server_name = os.getenv("SERVER_NAME")
         database_name = os.getenv("DATABASE_NAME")
         username = os.environ.get("SQLADMIN_USER")
